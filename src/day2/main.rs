@@ -1,4 +1,4 @@
-use std::{cmp, fs::File, i64::MIN, io::Read, slice::SplitN};
+use std::{cmp, fs::File, io::Read};
 
 type EasyResult<T> = Result<T, Box<dyn std::error::Error>>;
 
@@ -38,7 +38,7 @@ fn check_num_part2(num: &i64) -> EasyResult<bool> {
 }
 
 fn check_num_part1(num: &i64) -> EasyResult<bool> {
-    let mut left_string= num.to_string();
+    let mut left_string = num.to_string();
     let right_string = left_string.split_off(left_string.len() / 2);
     Ok(left_string == right_string)
 }
@@ -48,16 +48,23 @@ fn main() -> EasyResult<()> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
 
-    let contents = contents.split(",").map(|x| String::from(x)).collect::<Vec<String>>();
+    let contents = contents
+        .split(",")
+        .map(|x| String::from(x))
+        .collect::<Vec<String>>();
+
     let mut total: i64 = 0;
     for pair in contents {
-        let ids = pair.split('-').map(|x| String::from(x)).collect::<Vec<String>>(); 
+        let ids = pair
+            .split('-')
+            .map(|x| String::from(x))
+            .collect::<Vec<String>>();
         let (id1, id2) = (ids[0].parse::<i64>()?, ids[1].parse::<i64>()?);
 
         for i in id1..=id2 {
             if check_num_part1(&i)? {
                 total += i;
-            } 
+            }
         }
     }
     println!("{total}");

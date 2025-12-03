@@ -39,14 +39,13 @@ fn part2() -> EasyResult<i32> {
         let combo_string = line?;
         let (m, num) = combo_string.split_at(1);
         let num = num.parse::<i32>()?;
-        
+
         for _ in 0..num {
             if m == "L" {
                 starting_num -= 1;
             } else {
                 starting_num += 1;
             }
-
 
             if starting_num < 0 {
                 starting_num = 100 + starting_num;
