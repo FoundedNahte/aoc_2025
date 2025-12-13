@@ -71,9 +71,9 @@ fn part2() -> EasyResult<()> {
 
                 let mut backtracked_index = 0;
                 let mut highest = 0;
-                for i in start..end {
-                    if digits[i] > highest {
-                        highest = digits[i];
+                for (i, digit) in digits.iter().enumerate().take(end).skip(start) {
+                    if *digit > highest {
+                        highest = *digit;
                         backtracked_index = i;
                     }
                 }
@@ -84,9 +84,9 @@ fn part2() -> EasyResult<()> {
 
             let mut highest_index = 0;
             let mut highest = 0;
-            for i in cmp::max(index, trackers[curr_tracker])..digits.len() {
-                if digits[i] > highest {
-                    highest = digits[i];
+            for (i, digit) in digits.iter().enumerate().skip(cmp::max(index, trackers[curr_tracker])) {
+                if *digit > highest {
+                    highest = *digit; 
                     highest_index = i;
                 }
             }

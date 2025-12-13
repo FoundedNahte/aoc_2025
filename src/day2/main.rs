@@ -17,7 +17,7 @@ fn split_s(s: String, parts: usize) -> Vec<String> {
 fn check_num_part2(num: &i64) -> EasyResult<bool> {
     let ori_string = num.to_string();
     for i in 2..=ori_string.len() {
-        if ori_string.len() % i != 0 {
+        if !ori_string.len().is_multiple_of(i) {
             continue;
         }
         let splits = split_s(ori_string.clone(), i);
@@ -50,15 +50,12 @@ fn main() -> EasyResult<()> {
 
     let contents = contents
         .split(",")
-        .map(|x| String::from(x))
+        .map(String::from)
         .collect::<Vec<String>>();
 
     let mut total: i64 = 0;
     for pair in contents {
-        let ids = pair
-            .split('-')
-            .map(|x| String::from(x))
-            .collect::<Vec<String>>();
+        let ids = pair.split('-').map(String::from).collect::<Vec<String>>();
         let (id1, id2) = (ids[0].parse::<i64>()?, ids[1].parse::<i64>()?);
 
         for i in id1..=id2 {

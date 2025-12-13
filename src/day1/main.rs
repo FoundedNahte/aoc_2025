@@ -48,7 +48,7 @@ fn part2() -> EasyResult<i32> {
             }
 
             if starting_num < 0 {
-                starting_num = 100 + starting_num;
+                starting_num += 100;
             } else {
                 starting_num %= 100;
             }
