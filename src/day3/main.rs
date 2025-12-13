@@ -84,9 +84,13 @@ fn part2() -> EasyResult<()> {
 
             let mut highest_index = 0;
             let mut highest = 0;
-            for (i, digit) in digits.iter().enumerate().skip(cmp::max(index, trackers[curr_tracker])) {
+            for (i, digit) in digits
+                .iter()
+                .enumerate()
+                .skip(cmp::max(index, trackers[curr_tracker]))
+            {
                 if *digit > highest {
-                    highest = *digit; 
+                    highest = *digit;
                     highest_index = i;
                 }
             }
